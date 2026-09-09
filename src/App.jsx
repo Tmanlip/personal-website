@@ -5,7 +5,7 @@ import Home from './pages/Home'
 import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import Writeups from './pages/WriteUp'
-import WriteupDetail from './pages/WriteupDetail'
+import WriteupDetail from './pages/WriteUpDetail'
 
 export default function App() {
   return (
