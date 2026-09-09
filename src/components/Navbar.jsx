@@ -28,9 +28,9 @@ export default function Navbar() {
             CTF Write-ups
           </NavLink>
 
-          <a href="/#about">
+          <NavLink to="/about">
             About
-          </a>
+          </NavLink>
         </div>
       </nav>
     </header>

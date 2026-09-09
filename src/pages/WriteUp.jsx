@@ -1,90 +1,129 @@
-import { useMemo, useState } from 'react'
+import { Link } from 'react-router-dom'
 
-import WriteupCard from '../components/WriteupCard'
-import { writeups } from '../data/writeups'
+import {
+  ArrowUpRight,
+  BookOpen,
+  CheckCircle2,
+  Flag
+} from 'lucide-react'
 
-const categories = [
-  'All',
-  'Web',
-  'Crypto',
-  'Forensics',
-  'OSINT',
-  'Reverse Engineering',
-  'Pwn',
-  'Misc'
-]
+import { writeupCollections } from '../data/writeups'
 
 export default function Writeups() {
-  const [filter, setFilter] = useState('All')
-
-  const visible = useMemo(() => {
-    if (filter === 'All') {
-      return writeups
-    }
-
-    return writeups.filter(
-      (writeup) => writeup.category === filter
-    )
-  }, [filter])
-
   return (
     <main className="container page">
       <div className="page-head">
         <div className="eyebrow">
-          CTF WRITE-UPS
+          CTF & SECURITY LEARNING
         </div>
 
         <h1>
-          Challenge notes & solutions
+          Write-ups & learning paths
         </h1>
 
         <p>
-          Structured notes from legal CTFs and practice labs,
-          focused on methodology, technical reasoning,
-          lessons learned and remediation.
+          CTF events, training platforms and structured
+          cybersecurity learning paths, with individual
+          solved challenges documented inside each topic.
         </p>
       </div>
 
-      <div className="filter-row">
-        {categories.map((category) => (
-          <button
-            key={category}
-            className={
-              filter === category
-                ? 'active'
-                : ''
-            }
-            onClick={() => setFilter(category)}
-          >
-            {category}
-          </button>
-        ))}
+      <div className="writeup-collection-grid">
+        {writeupCollections.map((collection) => {
+          const solved =
+            collection.progress?.solved ??
+            collection.writeups.length
+
+          const total =
+            collection.progress?.total ??
+            collection.writeups.length
+
+          const percentage =
+            total > 0
+              ? Math.round((solved / total) * 100)
+              : 0
+
+          return (
+            <article
+              className="panel collection-card"
+              key={collection.id}
+            >
+              <div className="collection-card-top">
+                <span className="pill writeup-pill">
+                  {collection.type ===
+                  'Learning Path' ? (
+                    <BookOpen size={12} />
+                  ) : (
+                    <Flag size={12} />
+                  )}
+
+                  {collection.type}
+                </span>
+
+                <span className="status">
+                  {collection.status}
+                </span>
+              </div>
+
+              <span className="collection-platform">
+                {collection.platform}
+              </span>
+
+              <h2>
+                {collection.title}
+              </h2>
+
+              <p>
+                {collection.description}
+              </p>
+
+              <div className="tags">
+                {collection.tags.map((tag) => (
+                  <span key={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+
+              <div className="collection-progress">
+                <div className="progress-heading">
+                  <span>
+                    <CheckCircle2 size={14} />
+
+                    {solved} solved
+                  </span>
+
+                  <span>
+                    {percentage}%
+                  </span>
+                </div>
+
+                <div className="progress-track">
+                  <div
+                    className="progress-value"
+                    style={{
+                      width: `${percentage}%`
+                    }}
+                  />
+                </div>
+
+                <small>
+                  {solved} / {total} challenges
+                </small>
+              </div>
+
+              <Link
+                className="card-link"
+                to={`/writeups/${collection.id}`}
+              >
+                View write-ups
+
+                <ArrowUpRight size={17} />
+              </Link>
+            </article>
+          )
+        })}
       </div>
-
-      {visible.length > 0 ? (
-        <div className="grid projects-grid">
-          {visible.map((writeup) => (
-            <WriteupCard
-              writeup={writeup}
-              key={writeup.id}
-            />
-          ))}
-        </div>
-      ) : (
-        <div className="panel empty-state">
-          <h2>
-            No write-ups yet
-          </h2>
-
-          <p>
-            Add a write-up in{' '}
-            <code>
-              src/data/writeups.js
-            </code>{' '}
-            and it will appear here automatically.
-          </p>
-        </div>
-      )}
     </main>
   )
 }

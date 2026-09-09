@@ -20,7 +20,34 @@ export default function ProjectDetail() {
         <aside className="panel"><h2>Architecture / stack</h2><div className="stack-list">{project.architecture.map((a,i) => <div key={a}><span>{String(i+1).padStart(2,'0')}</span>{a}</div>)}</div></aside>
       </div>
       <section className="panel code-panel"><h2>Configuration / implementation notes</h2><pre><code>{project.code}</code></pre></section>
-      <section className="panel"><h2>What to add next</h2><p>Add screenshots from Packet Tracer, architecture diagrams, GitHub links, deployment URLs, testing evidence and a short “Lessons Learned” section for each project.</p></section>
+      {project.images?.length > 0 && (
+        <section className="project-section">
+          <div className="section-header">
+            <span className="section-kicker">Gallery</span>
+            <h2>Project Images</h2>
+          </div>
+
+          <div className="project-image-grid">
+            {project.images.map((image, index) => (
+              <figure className="project-image-card" key={index}>
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="project-image"
+                />
+
+                <figcaption>
+                  <h3>{image.title}</h3>
+
+                  {image.caption && (
+                    <p>{image.caption}</p>
+                  )}
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </section>
+      )}
     </main>
   )
 }

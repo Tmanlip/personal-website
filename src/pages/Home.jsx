@@ -1,30 +1,32 @@
 import {
+  ArrowRight,
   Cloud,
   Code2,
-  ShieldCheck,
   Network,
-  ArrowRight
+  ShieldCheck
 } from 'lucide-react'
 
 import { Link } from 'react-router-dom'
 
 import ProjectCard from '../components/ProjectCard'
-import WriteupCard from '../components/WriteupCard'
 
 import { projects } from '../data/projects'
-import { writeups } from '../data/writeups'
+import { writeupCollections } from '../data/writeups'
 
 export default function Home() {
-  const featured = projects.filter(
-    (project) => project.featured
-  )
+  const featuredProjects = projects
+    .filter((project) => project.featured)
+    .slice(0, 3)
 
-  const latestWriteups = writeups.slice(0, 3)
+  const latestCollections = writeupCollections.slice(0, 3)
 
   return (
     <main>
+      {/* =========================
+          HERO
+          ========================= */}
       <section className="hero container">
-        <div>
+        <div className="hero-content">
           <div className="eyebrow">
             NETWORKING · CLOUD · SECURITY
           </div>
@@ -39,10 +41,16 @@ export default function Home() {
           </h1>
 
           <p className="hero-copy">
-            A technical portfolio for my Cisco
-            Packet Tracer labs, cloud architecture,
-            web applications and cybersecurity
-            CTF write-ups.
+            A technical portfolio documenting my work in
+            computer networking, cloud architecture,
+            application development and cybersecurity.
+          </p>
+
+          <p className="hero-copy">
+            From Cisco Packet Tracer labs and cloud
+            deployments to CTF learning paths, I focus on
+            understanding how systems are designed, secured,
+            deployed and troubleshooted.
           </p>
 
           <div className="hero-actions">
@@ -59,11 +67,12 @@ export default function Home() {
               className="btn secondary"
               to="/writeups"
             >
-              Read CTF write-ups
+              Explore CTF write-ups
             </Link>
           </div>
         </div>
 
+        {/* TERMINAL */}
         <div className="hero-terminal">
           <div className="terminal-bar">
             <span></span>
@@ -77,25 +86,57 @@ export default function Home() {
 
           <pre>
             <code>
-              <span className="muted">$</span>
-              {' show expertise\n'}
+              <span className="muted">
+                $
+              </span>
+              {' whoami\n'}
 
-              <span className="success">✓</span>
-              {' Cisco Networking\n'}
+              <span className="success">
+                ›
+              </span>
+              {' Network & Security Student\n\n'}
 
-              <span className="success">✓</span>
-              {' Azure Cloud Architecture\n'}
+              <span className="muted">
+                $
+              </span>
+              {' show focus\n'}
 
-              <span className="success">✓</span>
-              {' React + Laravel Web Apps\n'}
+              <span className="success">
+                ✓
+              </span>
+              {' Network Engineering\n'}
 
-              <span className="success">✓</span>
-              {' Cybersecurity & CTF Write-ups'}
+              <span className="success">
+                ✓
+              </span>
+              {' Cloud Architecture\n'}
+
+              <span className="success">
+                ✓
+              </span>
+              {' DevOps & Deployment\n'}
+
+              <span className="success">
+                ✓
+              </span>
+              {' Cybersecurity\n\n'}
+
+              <span className="muted">
+                $
+              </span>
+              {' status\n'}
+
+              <span className="success">
+                online
+              </span>
             </code>
           </pre>
         </div>
       </section>
 
+      {/* =========================
+          FEATURED PROJECTS
+          ========================= */}
       <section className="section container">
         <div className="section-heading">
           <div>
@@ -104,8 +145,13 @@ export default function Home() {
             </div>
 
             <h2>
-              Selected projects
+              Selected engineering projects
             </h2>
+
+            <p>
+              Networking, cloud and application projects
+              documented as technical case studies.
+            </p>
           </div>
 
           <Link to="/projects">
@@ -113,133 +159,368 @@ export default function Home() {
           </Link>
         </div>
 
-        <div className="grid projects-grid">
-          {featured.map((project) => (
-            <ProjectCard
-              project={project}
-              key={project.id}
-            />
-          ))}
-        </div>
+        {featuredProjects.length > 0 ? (
+          <div className="grid projects-grid">
+            {featuredProjects.map((project) => (
+              <ProjectCard
+                project={project}
+                key={project.id}
+              />
+            ))}
+          </div>
+        ) : (
+          <div className="panel empty-state">
+            <h3>
+              No featured projects yet
+            </h3>
+
+            <p>
+              Mark a project with{' '}
+              <code>
+                featured: true
+              </code>{' '}
+              inside{' '}
+              <code>
+                src/data/projects.js
+              </code>.
+            </p>
+          </div>
+        )}
       </section>
 
-      <section className="section container writeups-home">
+      {/* =========================
+          CTF / LEARNING PATH
+          ========================= */}
+      <section className="section container">
         <div className="section-heading">
           <div>
             <div className="eyebrow">
-              SECURITY NOTES
+              SECURITY LEARNING
             </div>
 
             <h2>
-              Latest CTF write-ups
+              CTFs & learning paths
             </h2>
+
+            <p>
+              Collections of solved challenges grouped by
+              CTF event, platform or structured learning
+              path.
+            </p>
           </div>
 
           <Link to="/writeups">
-            Browse write-ups →
+            Browse all write-ups →
           </Link>
         </div>
 
-        <div className="grid projects-grid">
-          {latestWriteups.map((writeup) => (
-            <WriteupCard
-              writeup={writeup}
-              key={writeup.id}
-            />
-          ))}
-        </div>
+        {latestCollections.length > 0 ? (
+          <div className="writeup-collection-grid">
+            {latestCollections.map((collection) => {
+              const solved =
+                collection.progress?.solved ??
+                collection.writeups.filter(
+                  (writeup) =>
+                    writeup.status === 'Solved'
+                ).length
+
+              const total =
+                collection.progress?.total ??
+                collection.writeups.length
+
+              const percentage =
+                total > 0
+                  ? Math.round(
+                      (solved / total) * 100
+                    )
+                  : 0
+
+              return (
+                <Link
+                  key={collection.id}
+                  to={`/writeups/${collection.id}`}
+                  className="panel home-collection-card"
+                >
+                  <div className="collection-card-top">
+                    <span className="pill writeup-pill">
+                      {collection.type}
+                    </span>
+
+                    <span className="status">
+                      {collection.status}
+                    </span>
+                  </div>
+
+                  <span className="collection-platform">
+                    {collection.platform}
+                  </span>
+
+                  <h3>
+                    {collection.title}
+                  </h3>
+
+                  <p>
+                    {collection.description}
+                  </p>
+
+                  <div className="tags">
+                    {collection.tags
+                      .slice(0, 4)
+                      .map((tag) => (
+                        <span key={tag}>
+                          {tag}
+                        </span>
+                      ))}
+                  </div>
+
+                  <div className="collection-progress">
+                    <div className="progress-heading">
+                      <span>
+                        {solved} solved
+                      </span>
+
+                      <span>
+                        {percentage}%
+                      </span>
+                    </div>
+
+                    <div className="progress-track">
+                      <div
+                        className="progress-value"
+                        style={{
+                          width: `${percentage}%`
+                        }}
+                      />
+                    </div>
+
+                    <small>
+                      {solved} / {total} challenges
+                    </small>
+                  </div>
+
+                  <strong>
+                    View write-ups →
+                  </strong>
+                </Link>
+              )
+            })}
+          </div>
+        ) : (
+          <div className="panel empty-state">
+            <h3>
+              No CTF collections yet
+            </h3>
+
+            <p>
+              Add your first CTF event or learning path
+              inside{' '}
+              <code>
+                src/data/writeups.js
+              </code>.
+            </p>
+          </div>
+        )}
       </section>
 
-      <section
-        className="section container"
-        id="about"
-      >
+      {/* =========================
+          FOCUS AREAS
+          ========================= */}
+      <section className="section container">
         <div className="section-heading">
           <div>
             <div className="eyebrow">
-              WHAT I BUILD
+              TECHNICAL FOCUS
             </div>
 
             <h2>
-              Three focus areas
+              What I work on
             </h2>
+
+            <p>
+              My projects currently focus on networking,
+              cloud engineering and cybersecurity.
+            </p>
           </div>
         </div>
 
         <div className="grid focus-grid">
+          {/* NETWORKING */}
           <div className="focus-card">
-            <Network />
+            <div className="focus-icon">
+              <Network size={25} />
+            </div>
 
             <h3>
-              Packet Tracer
+              Network Engineering
             </h3>
 
             <p>
-              VLANs, trunking, router-on-a-stick,
-              DHCP, ACLs, SSH, switching and
-              troubleshooting documentation.
+              Designing and troubleshooting segmented
+              networks using Cisco technologies and
+              Packet Tracer.
             </p>
+
+            <div className="tags">
+              <span>VLAN</span>
+              <span>802.1Q</span>
+              <span>Routing</span>
+              <span>ACL</span>
+              <span>SSH</span>
+            </div>
           </div>
 
+          {/* CLOUD */}
           <div className="focus-card">
-            <Cloud />
+            <div className="focus-icon">
+              <Cloud size={25} />
+            </div>
 
             <h3>
               Cloud Architecture
             </h3>
 
             <p>
-              Azure-focused architecture,
-              multi-cloud governance, identity,
-              storage, deployment and secure
-              application design.
+              Designing cloud systems with a focus on
+              infrastructure, governance, security,
+              identity and deployment automation.
             </p>
+
+            <div className="tags">
+              <span>Azure</span>
+              <span>AWS</span>
+              <span>OCI</span>
+              <span>IaC</span>
+              <span>DevOps</span>
+            </div>
           </div>
 
+          {/* SECURITY */}
           <div className="focus-card">
-            <ShieldCheck />
+            <div className="focus-icon">
+              <ShieldCheck size={25} />
+            </div>
 
             <h3>
-              CTF Write-ups
+              Cybersecurity
             </h3>
 
             <p>
-              Challenge-by-challenge notes covering
-              methodology, vulnerability analysis,
-              solution reasoning, remediation and
-              lessons learned.
+              Improving practical security knowledge
+              through CTF challenges, labs, secure
+              architecture and defensive analysis.
             </p>
+
+            <div className="tags">
+              <span>CTF</span>
+              <span>Web</span>
+              <span>Forensics</span>
+              <span>Crypto</span>
+              <span>Security</span>
+            </div>
           </div>
         </div>
       </section>
 
-      <section className="section container about-panel">
-        <div>
-          <div className="eyebrow">
-            PORTFOLIO PURPOSE
+      {/* =========================
+          PORTFOLIO PHILOSOPHY
+          ========================= */}
+      <section className="section container">
+        <div className="about-panel">
+          <div>
+            <div className="eyebrow">
+              HOW I LEARN
+            </div>
+
+            <h2>
+              Build it.
+              <br />
+
+              Understand it.
+              <br />
+
+              Document it.
+            </h2>
           </div>
 
-          <h2>
-            More than screenshots.
-          </h2>
+          <div>
+            <p>
+              I prefer learning through implementation.
+              Instead of documenting only the final result,
+              I try to explain the architecture,
+              configuration, troubleshooting and security
+              decisions behind my work.
+            </p>
+
+            <p>
+              CTF activities are organized differently:
+              each event or learning path acts as a
+              collection, while individual solved
+              challenges are documented as detailed
+              write-ups.
+            </p>
+
+            <div className="mini-stack">
+              <Code2 size={18} />
+
+              React · Laravel · Cisco · Azure ·
+              PostgreSQL · Git · Security
+            </div>
+
+            <div
+              className="hero-actions"
+              style={{ marginTop: '24px' }}
+            >
+              <Link
+                className="btn secondary"
+                to="/about"
+              >
+                More about me
+
+                <ArrowRight size={17} />
+              </Link>
+            </div>
+          </div>
         </div>
+      </section>
 
-        <div>
-          <p>
-            Engineering work is documented as project
-            case studies, while CTF activity is
-            documented as individual write-ups.
+      {/* =========================
+          FINAL CTA
+          ========================= */}
+      <section className="section container">
+        <div className="panel home-cta">
+          <div>
+            <div className="eyebrow">
+              EXPLORE THE LAB
+            </div>
 
-            This keeps the portfolio easy to browse
-            and makes the security section feel more
-            like a technical knowledge base.
-          </p>
+            <h2>
+              See what I've been building
+              and learning.
+            </h2>
 
-          <div className="mini-stack">
-            <Code2 size={18} />
+            <p>
+              Browse engineering projects or explore
+              cybersecurity learning paths and challenge
+              write-ups.
+            </p>
+          </div>
 
-            React · Laravel · Cisco · Azure ·
-            PostgreSQL · Security
+          <div className="hero-actions">
+            <Link
+              className="btn primary"
+              to="/projects"
+            >
+              View projects
+
+              <ArrowRight size={18} />
+            </Link>
+
+            <Link
+              className="btn secondary"
+              to="/writeups"
+            >
+              CTF write-ups
+            </Link>
           </div>
         </div>
       </section>

@@ -6,6 +6,8 @@ import Projects from './pages/Projects'
 import ProjectDetail from './pages/ProjectDetail'
 import Writeups from './pages/WriteUp'
 import WriteupDetail from './pages/WriteUpDetail'
+import About from './pages/About'
+import WriteupCollection from './pages/WriteupCollection'
 
 export default function App() {
   return (
@@ -18,8 +20,22 @@ export default function App() {
         <Route path="/projects" element={<Projects />} />
         <Route path="/projects/:id" element={<ProjectDetail />} />
 
-        <Route path="/writeups" element={<Writeups />} />
-        <Route path="/writeups/:id" element={<WriteupDetail />} />
+        <Route
+          path="/writeups"
+          element={<Writeups />}
+        />
+
+        <Route
+          path="/writeups/:collectionId"
+          element={<WriteupCollection />}
+        />
+
+        <Route
+          path="/writeups/:collectionId/:writeupId"
+          element={<WriteupDetail />}
+        />
+
+        <Route path="/about" element={<About />} />
       </Routes>
 
       <footer>

@@ -1,4 +1,4 @@
-import { useParams, Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 
 import {
   ArrowLeft,
@@ -7,16 +7,23 @@ import {
   ShieldCheck
 } from 'lucide-react'
 
-import { writeups } from '../data/writeups'
+import { writeupCollections } from '../data/writeups'
 
 export default function WriteupDetail() {
-  const { id } = useParams()
+  const {
+    collectionId,
+    writeupId
+  } = useParams()
 
-  const writeup = writeups.find(
-    (item) => item.id === id
+  const collection = writeupCollections.find(
+    (item) => item.id === collectionId
   )
 
-  if (!writeup) {
+  const writeup = collection?.writeups.find(
+    (item) => item.id === writeupId
+  )
+
+  if (!collection || !writeup) {
     return (
       <main className="container page">
         <h1>
@@ -34,15 +41,29 @@ export default function WriteupDetail() {
     <main className="container page detail">
       <Link
         className="back"
-        to="/writeups"
+        to={`/writeups/${collection.id}`}
       >
         <ArrowLeft size={17} />
-        Back to write-ups
+
+        Back to {collection.title}
       </Link>
 
       <div className="detail-hero writeup-hero">
+        <div className="writeup-breadcrumb">
+          <span>
+            {collection.platform}
+          </span>
+
+          <span>/</span>
+
+          <span>
+            {collection.title}
+          </span>
+        </div>
+
         <span className="pill writeup-pill">
           <Flag size={12} />
+
           {writeup.category}
         </span>
 
@@ -56,32 +77,28 @@ export default function WriteupDetail() {
 
         <div className="writeup-facts">
           <span>
-            <strong>Platform:</strong>{' '}
-            {writeup.platform}
+            <strong>
+              Category:
+            </strong>{' '}
+
+            {writeup.category}
           </span>
 
           <span>
-            <strong>Event:</strong>{' '}
-            {writeup.event}
-          </span>
+            <strong>
+              Difficulty:
+            </strong>{' '}
 
-          <span>
-            <strong>Difficulty:</strong>{' '}
             {writeup.difficulty}
           </span>
 
           <span>
-            <strong>Status:</strong>{' '}
+            <strong>
+              Status:
+            </strong>{' '}
+
             {writeup.status}
           </span>
-        </div>
-
-        <div className="tags large">
-          {writeup.tags.map((tag) => (
-            <span key={tag}>
-              {tag}
-            </span>
-          ))}
         </div>
       </div>
 
@@ -106,20 +123,22 @@ export default function WriteupDetail() {
           </h2>
 
           <div className="method-list">
-            {writeup.methodology.map((step) => (
-              <div
-                className="method-step"
-                key={step.title}
-              >
-                <h3>
-                  {step.title}
-                </h3>
+            {writeup.methodology.map(
+              (step) => (
+                <div
+                  className="method-step"
+                  key={step.title}
+                >
+                  <h3>
+                    {step.title}
+                  </h3>
 
-                <p>
-                  {step.body}
-                </p>
-              </div>
-            ))}
+                  <p>
+                    {step.body}
+                  </p>
+                </div>
+              )
+            )}
           </div>
         </section>
 
@@ -147,24 +166,26 @@ export default function WriteupDetail() {
         </aside>
       </div>
 
-      <section className="panel code-panel">
-        <h2>
-          Commands / technical notes
-        </h2>
+      {writeup.commands && (
+        <section className="panel code-panel">
+          <h2>
+            Commands / technical notes
+          </h2>
 
-        <pre>
-          <code>
-            {writeup.commands}
-          </code>
-        </pre>
-      </section>
+          <pre>
+            <code>
+              {writeup.commands}
+            </code>
+          </pre>
+        </section>
+      )}
 
       <section className="panel result-panel">
         <div className="section-icon-title">
           <CheckCircle2 size={19} />
 
           <h2>
-            Result / proof
+            Result
           </h2>
         </div>
 
@@ -180,15 +201,19 @@ export default function WriteupDetail() {
           </h2>
 
           <div className="check-list">
-            {writeup.lessons.map((item) => (
-              <div key={item}>
-                <CheckCircle2 size={18} />
+            {writeup.lessons.map(
+              (item) => (
+                <div key={item}>
+                  <CheckCircle2
+                    size={18}
+                  />
 
-                <span>
-                  {item}
-                </span>
-              </div>
-            ))}
+                  <span>
+                    {item}
+                  </span>
+                </div>
+              )
+            )}
           </div>
         </section>
 
@@ -202,15 +227,19 @@ export default function WriteupDetail() {
           </div>
 
           <div className="check-list">
-            {writeup.remediation.map((item) => (
-              <div key={item}>
-                <ShieldCheck size={18} />
+            {writeup.remediation.map(
+              (item) => (
+                <div key={item}>
+                  <ShieldCheck
+                    size={18}
+                  />
 
-                <span>
-                  {item}
-                </span>
-              </div>
-            ))}
+                  <span>
+                    {item}
+                  </span>
+                </div>
+              )
+            )}
           </div>
         </section>
       </div>
