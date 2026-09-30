@@ -1260,3 +1260,36 @@
     padding: 24px;
   }
 }
+
+/* =========================
+   WRITE-UP
+   ========================= */
+
+.writeup-facts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+
+  margin-top: 24px;
+}
+
+.writeup-facts span {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 12px;
+
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+
+  background: rgba(255, 255, 255, 0.025);
+
+  color: #aebdca;
+  font-size: 0.9rem;
+}
+
+.writeup-facts strong {
+  color: #ecf4ff;
+  font-weight: 600;
+}

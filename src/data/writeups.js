@@ -1197,5 +1197,1636 @@ nc <hostname> <port> | grep "picoCTF"
         remediation: []
       }
     ]
+  },
+    {
+    id: 'beginners-guide-challenge-library',
+
+    title: "The Beginner's Guide to the Challenge Library",
+
+    type: 'Learning Path',
+
+    platform: 'CyLab / picoCTF',
+
+    status: 'Completed',
+
+    description:
+      'A beginner-focused CTF learning path covering Linux command-line skills, networking, cryptography, web exploitation, password cracking, forensics, reverse engineering and introductory binary exploitation.',
+
+    tags: [
+      'General Skills',
+      'Cryptography',
+      'Web Exploitation',
+      'Forensics',
+      'Reverse Engineering',
+      'Binary Exploitation'
+    ],
+
+    progress: {
+      solved: 25,
+      total: 25
+    },
+
+    writeups: [
+      {
+        id: 'obedient-cat',
+
+        title: 'Obedient Cat',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A basic Linux challenge demonstrating how to display the contents of a file directly from the terminal.',
+
+        objective:
+          'Read the provided file and identify the flag stored in plain text.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'cat'
+        ],
+
+        methodology: [
+          {
+            title: '1. Obtain the challenge file',
+
+            body:
+              'I downloaded the provided flag file into my Linux environment.'
+          },
+
+          {
+            title: '2. Inspect the file',
+
+            body:
+              'Since the challenge indicated that the information was stored in plain text, I displayed the file directly from the terminal.'
+          }
+        ],
+
+        commands: `
+cat flag
+        `,
+
+        result:
+          'Successfully retrieved the flag stored directly inside the file.',
+
+        lessons: [
+          'The cat command can quickly display text-file contents.',
+          'Simple file inspection should be performed before using more complicated analysis techniques.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'superssh',
+
+        title: 'SuperSSH',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'An introductory SSH challenge demonstrating remote Linux access using a username, hostname and custom port.',
+
+        objective:
+          'Connect to the provided remote system using SSH and retrieve the challenge information.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'SSH'
+        ],
+
+        methodology: [
+          {
+            title: '1. Launch the instance',
+
+            body:
+              'I launched the challenge instance and obtained the hostname, username, port and password.'
+          },
+
+          {
+            title: '2. Establish an SSH connection',
+
+            body:
+              'I connected to the remote system using SSH while specifying the non-default port.'
+          },
+
+          {
+            title: '3. Authenticate',
+
+            body:
+              'I entered the provided password and successfully accessed the remote environment.'
+          }
+        ],
+
+        commands: `
+ssh <username>@<hostname> -p <port>
+        `,
+
+        result:
+          'Successfully authenticated to the remote system through SSH.',
+
+        lessons: [
+          'SSH provides encrypted remote shell access.',
+          'The -p option can specify a non-default SSH port.',
+          'Remote services are commonly identified using a hostname and port.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'whats-a-netcat',
+
+        title: "What's a Netcat?",
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'An introductory networking challenge demonstrating how Netcat can communicate with a remote TCP service.',
+
+        objective:
+          'Connect to the provided network service and inspect its response.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'Netcat',
+          'TCP'
+        ],
+
+        methodology: [
+          {
+            title: '1. Launch the instance',
+
+            body:
+              'I obtained the hostname and port assigned to the challenge.'
+          },
+
+          {
+            title: '2. Connect to the service',
+
+            body:
+              'I used Netcat to establish a TCP connection to the remote service.'
+          }
+        ],
+
+        commands: `
+nc <hostname> <port>
+        `,
+
+        result:
+          'Successfully communicated with the challenge service using Netcat.',
+
+        lessons: [
+          'Netcat is useful for interacting with TCP and UDP services.',
+          'Understanding ports and network services is fundamental for CTF challenges.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'mod26',
+
+        title: 'Mod 26',
+
+        category: 'Cryptography',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'An introductory cryptography challenge involving ROT13 substitution.',
+
+        objective:
+          'Recognize the provided ciphertext as ROT13 and decode it to recover the original message.',
+
+        environment: [
+          'Python',
+          'ROT13',
+          'Terminal'
+        ],
+
+        methodology: [
+          {
+            title: '1. Identify the cipher',
+
+            body:
+              'The challenge referenced ROT13, indicating that each alphabetic character should be rotated by 13 positions.'
+          },
+
+          {
+            title: '2. Implement the transformation',
+
+            body:
+              'I created a simple Python implementation that shifted uppercase and lowercase characters by 13 positions.'
+          },
+
+          {
+            title: '3. Decode the ciphertext',
+
+            body:
+              'The ROT13 transformation recovered the original plaintext.'
+          }
+        ],
+
+        commands: `
+python3 -c "import codecs; print(codecs.decode('<ciphertext>', 'rot_13'))"
+        `,
+
+        result:
+          'Successfully decoded the ROT13 ciphertext.',
+
+        lessons: [
+          'ROT13 is a Caesar cipher with a fixed rotation of 13.',
+          'Recognizing common encoding and cipher patterns can simplify cryptography challenges.',
+          'Python provides built-in utilities for common transformations.'
+        ],
+
+        remediation: [
+          'ROT13 should never be used to protect sensitive information.',
+          'Encoding and simple substitution are not substitutes for encryption.'
+        ]
+      },
+
+      {
+        id: 'warmed-up',
+
+        title: 'Warmed Up',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A hexadecimal-to-decimal conversion challenge.',
+
+        objective:
+          'Convert the hexadecimal value 0x3D into decimal.',
+
+        environment: [
+          'Terminal',
+          'Python',
+          'Number Systems'
+        ],
+
+        methodology: [
+          {
+            title: '1. Identify the representation',
+
+            body:
+              'The 0x prefix identified the supplied value as hexadecimal.'
+          },
+
+          {
+            title: '2. Convert the value',
+
+            body:
+              'I converted the hexadecimal value from base 16 into its decimal equivalent.'
+          }
+        ],
+
+        commands: `
+python3 -c "print(int('3D', 16))"
+        `,
+
+        result:
+          'Successfully converted the hexadecimal value into decimal.',
+
+        lessons: [
+          'The 0x prefix commonly represents hexadecimal values.',
+          'Number-system conversion is useful when analyzing low-level computer data.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: '2warm',
+
+        title: '2Warm',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A decimal-to-binary conversion challenge.',
+
+        objective:
+          'Convert the decimal value 42 into binary.',
+
+        environment: [
+          'Python',
+          'Terminal',
+          'Binary'
+        ],
+
+        methodology: [
+          {
+            title: '1. Identify the decimal value',
+
+            body:
+              'The challenge provided a base-10 integer that needed to be represented in base 2.'
+          },
+
+          {
+            title: '2. Convert to binary',
+
+            body:
+              'I used Python to calculate its binary representation.'
+          }
+        ],
+
+        commands: `
+python3 -c "print(bin(42)[2:])"
+        `,
+
+        result:
+          'Successfully converted the decimal number into binary.',
+
+        lessons: [
+          'Binary uses base 2.',
+          'Python can quickly perform number-system conversions.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'bases',
+
+        title: 'Bases',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'An encoding challenge requiring identification and decoding of Base64 data.',
+
+        objective:
+          'Recognize the provided text as Base64-encoded data and decode it.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'Base64'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect the encoded string',
+
+            body:
+              'I examined the supplied string and identified Base64 as the likely encoding scheme.'
+          },
+
+          {
+            title: '2. Decode the value',
+
+            body:
+              'I piped the encoded string into the Linux base64 utility using decode mode.'
+          }
+        ],
+
+        commands: `
+echo "<encoded-string>" | base64 -d
+        `,
+
+        result:
+          'Successfully decoded the Base64 value.',
+
+        lessons: [
+          'Base64 is an encoding scheme rather than encryption.',
+          'The Linux base64 command can encode and decode data directly from the terminal.'
+        ],
+
+        remediation: [
+          'Base64 should not be used to protect secrets because it can be trivially reversed.'
+        ]
+      },
+
+      {
+        id: 'wave-a-flag',
+
+        title: 'Wave a Flag',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A Linux executable challenge introducing executable permissions and help arguments.',
+
+        objective:
+          'Execute the provided program and determine how its help functionality can be invoked.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'chmod'
+        ],
+
+        methodology: [
+          {
+            title: '1. Prepare the binary',
+
+            body:
+              'I downloaded the provided program and ensured that it had executable permissions.'
+          },
+
+          {
+            title: '2. Execute the program',
+
+            body:
+              'Running the binary without arguments returned information indicating that a help argument was available.'
+          },
+
+          {
+            title: '3. Invoke help',
+
+            body:
+              'I supplied the -h argument to display the program help information.'
+          }
+        ],
+
+        commands: `
+chmod +x warm
+
+./warm
+
+./warm -h
+        `,
+
+        result:
+          'Successfully discovered the required information through the program help option.',
+
+        lessons: [
+          'chmod +x adds executable permissions.',
+          '-h and --help are common command-line help options.',
+          'Program usage information should be inspected when working with unfamiliar tools.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'tab-tab-attack',
+
+        title: 'Tab, Tab, Attack',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A Linux navigation challenge demonstrating shell tab completion.',
+
+        objective:
+          'Navigate a deeply nested directory structure efficiently and execute the discovered program.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'Bash',
+          'Tab Completion'
+        ],
+
+        methodology: [
+          {
+            title: '1. Extract the archive',
+
+            body:
+              'I extracted the supplied ZIP archive.'
+          },
+
+          {
+            title: '2. Navigate the directories',
+
+            body:
+              'I used Bash tab completion instead of manually typing the long directory names.'
+          },
+
+          {
+            title: '3. Execute the discovered file',
+
+            body:
+              'After reaching the final directory, I executed the challenge binary.'
+          }
+        ],
+
+        commands: `
+unzip Addadshashanammu.zip
+
+cd Addadshashanammu/
+
+# Use Tab completion to navigate
+
+./<binary>
+        `,
+
+        result:
+          'Successfully navigated the nested filesystem and executed the challenge program.',
+
+        lessons: [
+          'Tab completion improves command-line speed and accuracy.',
+          'Shell navigation skills are important when investigating large directory structures.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'insp3ctor',
+
+        title: 'Insp3ctor',
+
+        category: 'Web Exploitation',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'An introductory web challenge involving inspection of frontend source code.',
+
+        objective:
+          'Inspect the website source files and locate information distributed across the frontend application.',
+
+        environment: [
+          'Web Browser',
+          'Developer Tools',
+          'HTML',
+          'CSS',
+          'JavaScript'
+        ],
+
+        methodology: [
+          {
+            title: '1. Open the application',
+
+            body:
+              'I first reviewed the rendered website normally.'
+          },
+
+          {
+            title: '2. Inspect the HTML',
+
+            body:
+              'I opened browser Developer Tools and inspected the HTML delivered to the browser.'
+          },
+
+          {
+            title: '3. Review frontend sources',
+
+            body:
+              'I examined the other client-side resources available through the Sources panel.'
+          },
+
+          {
+            title: '4. Combine the findings',
+
+            body:
+              'Information discovered across the frontend files was combined to complete the challenge.'
+          }
+        ],
+
+        commands: `
+# Browser Developer Tools
+
+Inspect Element
+Sources
+View Page Source
+        `,
+
+        result:
+          'Successfully located the required information within the client-side source code.',
+
+        lessons: [
+          'Users can inspect HTML, CSS and JavaScript delivered to their browsers.',
+          'Sensitive information should never rely on frontend source-code secrecy.'
+        ],
+
+        remediation: [
+          'Do not embed credentials, API secrets or sensitive information in frontend code.',
+          'Enforce security controls on the server side.'
+        ]
+      },
+
+      {
+        id: 'strings-it',
+
+        title: 'Strings It',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A static file-analysis challenge using strings and grep.',
+
+        objective:
+          'Extract readable information from the supplied file without executing it.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'strings',
+          'grep'
+        ],
+
+        methodology: [
+          {
+            title: '1. Perform static inspection',
+
+            body:
+              'Rather than executing the unknown file, I extracted printable character sequences using strings.'
+          },
+
+          {
+            title: '2. Filter the output',
+
+            body:
+              'I piped the output into grep and searched for the known flag prefix.'
+          }
+        ],
+
+        commands: `
+strings strings | grep "picoCTF"
+        `,
+
+        result:
+          'Successfully identified the required information through static analysis.',
+
+        lessons: [
+          'strings can extract readable data from binary files.',
+          'Static inspection can reveal useful information without executing an unknown program.',
+          'Linux pipes allow multiple tools to work together.'
+        ],
+
+        remediation: [
+          'Do not embed sensitive secrets directly inside compiled applications.'
+        ]
+      },
+
+      {
+        id: 'first-grep',
+
+        title: 'First Grep',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A text-search challenge demonstrating grep.',
+
+        objective:
+          'Locate the flag inside a large file without manually reading every line.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'grep'
+        ],
+
+        methodology: [
+          {
+            title: '1. Identify a known pattern',
+
+            body:
+              'I used the known picoCTF flag prefix as a search pattern.'
+          },
+
+          {
+            title: '2. Filter the file',
+
+            body:
+              'grep searched the supplied file and returned only matching content.'
+          }
+        ],
+
+        commands: `
+grep "picoCTF" file
+        `,
+
+        result:
+          'Successfully located the flag using grep.',
+
+        lessons: [
+          'grep efficiently searches text for patterns.',
+          'Known patterns can dramatically reduce manual analysis.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'where-are-the-robots',
+
+        title: 'Where Are The Robots',
+
+        category: 'Web Exploitation',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A web enumeration challenge introducing the robots.txt file and discoverable web paths.',
+
+        objective:
+          'Inspect the website robots.txt file and investigate the path disclosed by it.',
+
+        environment: [
+          'Web Browser',
+          'HTTP',
+          'robots.txt'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect robots.txt',
+
+            body:
+              'I appended /robots.txt to the challenge website URL.'
+          },
+
+          {
+            title: '2. Review disallowed paths',
+
+            body:
+              'The file contained a Disallow entry identifying a path that was not linked through the normal interface.'
+          },
+
+          {
+            title: '3. Visit the discovered path',
+
+            body:
+              'I manually navigated to the disclosed location and found the information required by the challenge.'
+          }
+        ],
+
+        commands: `
+/robots.txt
+
+/<disallowed-path>
+        `,
+
+        result:
+          'Successfully discovered the hidden page through robots.txt.',
+
+        lessons: [
+          'robots.txt is publicly accessible.',
+          'Disallow directives do not provide access control.',
+          'Web enumeration includes checking common metadata and configuration files.'
+        ],
+
+        remediation: [
+          'Never rely on robots.txt to protect sensitive resources.',
+          'Use authentication and authorization to restrict sensitive endpoints.'
+        ]
+      },
+
+      {
+        id: 'python-wrangling',
+
+        title: 'Python Wrangling',
+
+        category: 'General Skills',
+
+        difficulty: 'Medium',
+
+        status: 'Solved',
+
+        summary:
+          'A command-line Python challenge involving an encrypted file, a password and a supplied decoding script.',
+
+        objective:
+          'Determine how to invoke the provided Python script and use the supplied password to process the encrypted file.',
+
+        environment: [
+          'Linux',
+          'Python 3',
+          'Terminal'
+        ],
+
+        methodology: [
+          {
+            title: '1. Obtain the files',
+
+            body:
+              'I placed the Python script, password file and encrypted flag file in the same working directory.'
+          },
+
+          {
+            title: '2. Inspect the password',
+
+            body:
+              'I retrieved the supplied password from password.txt.'
+          },
+
+          {
+            title: '3. Run the decoder',
+
+            body:
+              'I executed the script in decode mode against the encrypted file and supplied the password when prompted.'
+          }
+        ],
+
+        commands: `
+cat password.txt
+
+python3 ende.py -d flag.txt.en
+        `,
+
+        result:
+          'Successfully processed the encrypted file using the provided Python utility.',
+
+        lessons: [
+          'Python scripts can accept command-line arguments.',
+          'Understanding program invocation is an important command-line skill.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'pw-crack-1',
+
+        title: 'PW Crack 1',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'An introductory source-code inspection challenge involving a Python password checker.',
+
+        objective:
+          'Inspect the provided password checker to determine the expected password.',
+
+        environment: [
+          'Linux',
+          'Python',
+          'nano'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect the source code',
+
+            body:
+              'I opened the provided Python password checker and reviewed its authentication logic.'
+          },
+
+          {
+            title: '2. Identify the expected value',
+
+            body:
+              'The required password was directly discoverable from the source code.'
+          },
+
+          {
+            title: '3. Execute the checker',
+
+            body:
+              'I ran the program and supplied the discovered password.'
+          }
+        ],
+
+        commands: `
+nano level1.py
+
+python3 level1.py
+        `,
+
+        result:
+          'Successfully identified the password through source-code inspection.',
+
+        lessons: [
+          'Hard-coded passwords can be recovered from accessible source code.',
+          'Source-code review is often more efficient than guessing.'
+        ],
+
+        remediation: [
+          'Never hard-code passwords or secrets directly into application source code.'
+        ]
+      },
+
+      {
+        id: 'pw-crack-2',
+
+        title: 'PW Crack 2',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A password-checker challenge requiring source-code inspection and ASCII interpretation.',
+
+        objective:
+          'Analyze the Python password checker and reconstruct the expected password from encoded character values.',
+
+        environment: [
+          'Linux',
+          'Python',
+          'ASCII',
+          'nano'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect the checker',
+
+            body:
+              'I reviewed the Python source code to understand how the expected password was constructed.'
+          },
+
+          {
+            title: '2. Interpret character values',
+
+            body:
+              'The password components were represented using character codes, which I converted into readable ASCII.'
+          },
+
+          {
+            title: '3. Test the reconstructed password',
+
+            body:
+              'I executed the checker and supplied the decoded value.'
+          }
+        ],
+
+        commands: `
+nano level2.py
+
+python3 level2.py
+        `,
+
+        result:
+          'Successfully reconstructed the password from the program logic.',
+
+        lessons: [
+          'Character encoding does not protect secrets.',
+          'Reading program logic can reveal how hidden values are generated.'
+        ],
+
+        remediation: [
+          'Do not rely on encoding or obfuscation to protect passwords.'
+        ]
+      },
+
+      {
+        id: 'pw-crack-3',
+
+        title: 'PW Crack 3',
+
+        category: 'General Skills',
+
+        difficulty: 'Medium',
+
+        status: 'Solved',
+
+        summary:
+          'A password challenge introducing password hashes and a small set of candidate passwords.',
+
+        objective:
+          'Determine which candidate password matches the expected password hash.',
+
+        environment: [
+          'Linux',
+          'Python',
+          'Password Hashing'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect the checker',
+
+            body:
+              'I reviewed the Python source and identified the candidate password list.'
+          },
+
+          {
+            title: '2. Understand the comparison',
+
+            body:
+              'The checker hashes user input and compares it against the supplied correct password hash.'
+          },
+
+          {
+            title: '3. Test candidates',
+
+            body:
+              'Because only a small number of candidates were provided, I tested them against the checker until the matching password was identified.'
+          }
+        ],
+
+        commands: `
+nano level3.py
+
+python3 level3.py
+        `,
+
+        result:
+          'Successfully identified the matching password from the supplied candidate set.',
+
+        lessons: [
+          'Password verification commonly compares hashes rather than plaintext values.',
+          'Small password search spaces can be tested very quickly.'
+        ],
+
+        remediation: [
+          'Use strong passwords with sufficiently large search spaces.',
+          'Use password-specific hashing algorithms with salts for stored passwords.'
+        ]
+      },
+
+      {
+        id: 'pw-crack-4',
+
+        title: 'PW Crack 4',
+
+        category: 'General Skills',
+
+        difficulty: 'Medium',
+
+        status: 'Solved',
+
+        summary:
+          'A Python automation challenge involving programmatically testing a list of candidate passwords.',
+
+        objective:
+          'Modify the provided checker so that candidate passwords are automatically tested against the expected hash.',
+
+        environment: [
+          'Linux',
+          'Python',
+          'Hashing',
+          'Automation'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect the candidate list',
+
+            body:
+              'The supplied program contained a list of possible passwords.'
+          },
+
+          {
+            title: '2. Replace manual testing',
+
+            body:
+              'Rather than entering every candidate manually, I added a for loop to iterate through the list.'
+          },
+
+          {
+            title: '3. Hash each candidate',
+
+            body:
+              'Each candidate was passed through the same hashing function used by the checker.'
+          },
+
+          {
+            title: '4. Compare hashes',
+
+            body:
+              'When a generated hash matched the expected hash, the program processed the encrypted flag.'
+          }
+        ],
+
+        commands: `
+for user_pw in pos_pw_list:
+    user_pw_hash = hash_pw(user_pw)
+
+    if user_pw_hash == correct_pw_hash:
+        print("Password:", user_pw)
+
+        decryption = str_xor(
+            flag_enc.decode(),
+            user_pw
+        )
+
+        print(decryption)
+        break
+        `,
+
+        result:
+          'Successfully automated candidate testing using Python.',
+
+        lessons: [
+          'Loops can automate repetitive security testing tasks.',
+          'Small password spaces are vulnerable to exhaustive searching.',
+          'Automation significantly improves efficiency compared with manual testing.'
+        ],
+
+        remediation: [
+          'Avoid passwords selected from small predictable sets.',
+          'Use modern salted password-hashing algorithms and strong password policies.'
+        ]
+      },
+
+      {
+        id: 'pw-crack-5',
+
+        title: 'PW Crack 5',
+
+        category: 'General Skills',
+
+        difficulty: 'Medium',
+
+        status: 'Solved',
+
+        summary:
+          'A dictionary-based password challenge requiring Python file handling, iteration and hash comparison.',
+
+        objective:
+          'Read candidate passwords from the supplied dictionary and determine which entry matches the expected password hash.',
+
+        environment: [
+          'Linux',
+          'Python',
+          'Dictionary',
+          'Hashing'
+        ],
+
+        methodology: [
+          {
+            title: '1. Load the dictionary',
+
+            body:
+              'I opened dictionary.txt and loaded its candidate passwords into Python.'
+          },
+
+          {
+            title: '2. Iterate through candidates',
+
+            body:
+              'I used a loop to process each dictionary entry.'
+          },
+
+          {
+            title: '3. Calculate candidate hashes',
+
+            body:
+              'Each password candidate was passed through the same hash function as the original checker.'
+          },
+
+          {
+            title: '4. Identify the match',
+
+            body:
+              'When a generated hash matched the supplied correct hash, the corresponding password was used to process the encrypted data.'
+          }
+        ],
+
+        commands: `
+dictionary = open('dictionary.txt', 'r').read()
+dictionary_as_list = dictionary.split("\\n")
+
+for user_pw in dictionary_as_list:
+    user_pw = user_pw.strip()
+    user_pw_hash = hash_pw(user_pw)
+
+    if user_pw_hash == correct_pw_hash:
+        print("Password:", user_pw)
+
+        decryption = str_xor(
+            flag_enc.decode(),
+            user_pw
+        )
+
+        print(decryption)
+        break
+        `,
+
+        result:
+          'Successfully implemented dictionary-based candidate testing.',
+
+        lessons: [
+          'Python can automate dictionary-based password testing.',
+          'Whitespace should be handled carefully when reading candidate values from files.',
+          'Predictable passwords remain vulnerable even when stored as hashes.'
+        ],
+
+        remediation: [
+          'Use long and unique passwords that are resistant to dictionary attacks.',
+          'Store passwords using modern salted password-hashing algorithms.'
+        ]
+      },
+
+      {
+        id: 'enhance',
+
+        title: 'Enhance!',
+
+        category: 'Forensics',
+
+        difficulty: 'Medium',
+
+        status: 'Solved',
+
+        summary:
+          'A forensic image-analysis challenge requiring inspection of information contained within an image artifact.',
+
+        objective:
+          'Analyze the supplied image file and identify the information hidden within it.',
+
+        environment: [
+          'Linux',
+          'Image Analysis',
+          'Forensics'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect the image',
+
+            body:
+              'I first reviewed the supplied image normally to understand the visible content.'
+          },
+
+          {
+            title: '2. Investigate the underlying artifact',
+
+            body:
+              'I examined the image data more closely rather than relying only on its rendered appearance.'
+          },
+
+          {
+            title: '3. Recover the hidden information',
+
+            body:
+              'The underlying image content revealed the information required to complete the challenge.'
+          }
+        ],
+
+        commands: `
+file <image>
+
+strings <image>
+        `,
+
+        result:
+          'Successfully recovered the hidden information from the supplied image artifact.',
+
+        lessons: [
+          'Forensic analysis should consider both rendered content and underlying file data.',
+          'Image files may contain information that is not obvious when viewed normally.'
+        ],
+
+        remediation: [
+          'Inspect exported assets before publishing them.',
+          'Remove unintended embedded information from publicly distributed files.'
+        ]
+      },
+
+      {
+        id: 'big-zip',
+
+        title: 'Big Zip',
+
+        category: 'General Skills',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'A recursive filesystem-search challenge using grep.',
+
+        objective:
+          'Search a large extracted directory tree for the flag without manually opening every file.',
+
+        environment: [
+          'Linux',
+          'Terminal',
+          'grep',
+          'ZIP'
+        ],
+
+        methodology: [
+          {
+            title: '1. Extract the archive',
+
+            body:
+              'I extracted the supplied ZIP archive containing numerous directories and files.'
+          },
+
+          {
+            title: '2. Search recursively',
+
+            body:
+              'I used grep recursively to identify files containing the known flag pattern.'
+          },
+
+          {
+            title: '3. Inspect the matching file',
+
+            body:
+              'After identifying the relevant file, I displayed its contents.'
+          }
+        ],
+
+        commands: `
+unzip big-zip-files.zip
+
+grep -irl "picoCTF" ./
+
+cat <matching-file>
+        `,
+
+        result:
+          'Successfully located the required file through recursive searching.',
+
+        lessons: [
+          'grep can recursively search large directory structures.',
+          'Automated searching is significantly faster than manual file inspection.'
+        ],
+
+        remediation: []
+      },
+
+      {
+        id: 'vault-door-training',
+
+        title: 'Vault Door Training',
+
+        category: 'Reverse Engineering',
+
+        difficulty: 'Easy',
+
+        status: 'Solved',
+
+        summary:
+          'An introductory reverse-engineering challenge demonstrating source-code analysis using a Java password checker.',
+
+        objective:
+          'Inspect the supplied Java source code and determine the password expected by the vault program.',
+
+        environment: [
+          'Java',
+          'Source Code Analysis',
+          'Reverse Engineering'
+        ],
+
+        methodology: [
+          {
+            title: '1. Open the source code',
+
+            body:
+              'I inspected VaultDoorTraining.java instead of attempting to guess the password.'
+          },
+
+          {
+            title: '2. Locate password validation',
+
+            body:
+              'I identified the method responsible for checking the supplied password.'
+          },
+
+          {
+            title: '3. Analyze the expected value',
+
+            body:
+              'The validation logic directly revealed the value required by the program.'
+          }
+        ],
+
+        commands: `
+cat VaultDoorTraining.java
+        `,
+
+        result:
+          'Successfully determined the expected password through source-code analysis.',
+
+        lessons: [
+          'Reverse engineering often begins with understanding validation logic.',
+          'Hard-coded secrets can be discovered through source-code inspection.'
+        ],
+
+        remediation: [
+          'Do not hard-code sensitive secrets inside application source code.'
+        ]
+      },
+
+      {
+        id: 'keygenme-py',
+
+        title: 'Keygenme-py',
+
+        category: 'Reverse Engineering',
+
+        difficulty: 'Medium',
+
+        status: 'Solved',
+
+        summary:
+          'A Python reverse-engineering challenge involving analysis of key-generation logic and SHA-256 output.',
+
+        objective:
+          'Understand how the Python program constructs its license key and reproduce the required dynamic key portion.',
+
+        environment: [
+          'Python',
+          'SHA-256',
+          'Reverse Engineering'
+        ],
+
+        methodology: [
+          {
+            title: '1. Inspect the Python source',
+
+            body:
+              'I reviewed the supplied script and identified the key-validation and generation logic.'
+          },
+
+          {
+            title: '2. Identify the hash input',
+
+            body:
+              'The dynamic portion of the key was derived from a SHA-256 hash generated from a username value.'
+          },
+
+          {
+            title: '3. Reproduce the hash',
+
+            body:
+              'I generated the SHA-256 digest using Python.'
+          },
+
+          {
+            title: '4. Reconstruct the dynamic section',
+
+            body:
+              'I selected characters from the digest according to the indexes used by the program and reconstructed the required key.'
+          }
+        ],
+
+        commands: `
+import hashlib
+
+username = b"<username>"
+
+h = hashlib.sha256(username).hexdigest()
+
+dynamic = (
+    h[4] +
+    h[5] +
+    h[3] +
+    h[6] +
+    h[2] +
+    h[7] +
+    h[1] +
+    h[8]
+)
+
+print(dynamic)
+        `,
+
+        result:
+          'Successfully reproduced the program key-generation logic.',
+
+        lessons: [
+          'Reverse engineering requires understanding how program inputs are transformed.',
+          'Cryptographic hashes are deterministic.',
+          'A strong hash does not protect a key when the generation algorithm and input are exposed.'
+        ],
+
+        remediation: [
+          'Do not rely entirely on client-side key validation for sensitive licensing or authorization.',
+          'Sensitive authorization decisions should be validated by trusted systems.'
+        ]
+      },
+
+      {
+        id: 'buffer-overflow-0',
+
+        title: 'Buffer Overflow 0',
+
+        category: 'Binary Exploitation',
+
+        difficulty: 'Medium',
+
+        status: 'Solved',
+
+        summary:
+          'An introductory binary exploitation challenge demonstrating how unsafe input handling can cause a stack buffer overflow.',
+
+        objective:
+          'Analyze the provided training program and trigger its intended overflow condition within the picoCTF environment.',
+
+        environment: [
+          'Linux',
+          'Python',
+          'pwntools',
+          'Binary Exploitation'
+        ],
+
+        methodology: [
+          {
+            title: '1. Review the challenge source',
+
+            body:
+              'I inspected the provided source code to understand how user-controlled input was handled.'
+          },
+
+          {
+            title: '2. Identify the vulnerable buffer',
+
+            body:
+              'The program used an unsafe input operation with a fixed-size buffer, allowing input larger than the allocated space.'
+          },
+
+          {
+            title: '3. Construct test input',
+
+            body:
+              'Within the authorized picoCTF environment, I created an input larger than the vulnerable buffer.'
+          },
+
+          {
+            title: '4. Send the input',
+
+            body:
+              'I used pwntools to connect to the challenge instance and send the crafted input.'
+          },
+
+          {
+            title: '5. Observe program behavior',
+
+            body:
+              'The oversized input triggered the challenge condition and caused the program to return the required output.'
+          }
+        ],
+
+        commands: `
+from pwn import *
+
+conn = remote(
+    '<challenge-host>',
+    <challenge-port>
+)
+
+payload = b"A" * 32
+
+conn.sendline(payload)
+
+print(conn.recvall().decode())
+        `,
+
+        result:
+          'Successfully triggered the intended buffer-overflow condition in the authorized picoCTF training environment.',
+
+        lessons: [
+          'Fixed-size buffers can become vulnerable when input length is not properly validated.',
+          'Unsafe input functions can allow data to exceed allocated buffer boundaries.',
+          'Source-code analysis can help identify memory-safety weaknesses.',
+          'pwntools can automate interaction with binary exploitation training services.'
+        ],
+
+        remediation: [
+          'Avoid unsafe input functions that do not enforce buffer boundaries.',
+          'Validate input length before copying data into fixed-size buffers.',
+          'Use memory-safe APIs and modern compiler protections where possible.'
+        ]
+      }
+    ]
   }
 ];

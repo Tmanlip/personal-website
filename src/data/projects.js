@@ -450,7 +450,422 @@ Hosting: Azure Static Web Apps + App Service`
     ],
 
     code: `Goal: Standardize cloud resource tags
-Scope: Azure + AWS + OCI
-Output: Compliance dashboard and governance reporting`
+          Scope: Azure + AWS + OCI
+          Output: Compliance dashboard and governance reporting`
+  },
+  {
+    id: 'multicloud-forge',
+
+    title: 'MultiCloud Forge',
+
+    category: 'Cloud Architecture',
+
+    type: 'Multi-Cloud Infrastructure & DevOps',
+
+    summary:
+      'A production-inspired multi-cloud infrastructure engineering lab that provisions, deploys, monitors and validates serverless workloads across AWS and Microsoft Azure using Terraform, GitHub Actions and OIDC federation.',
+
+    status: 'Completed',
+
+    featured: true,
+
+    tags: [
+      'AWS',
+      'Azure',
+      'Terraform',
+      'GitHub Actions',
+      'DevOps',
+      'IaC',
+      'OIDC',
+      'Serverless',
+      'CloudWatch',
+      'Application Insights',
+      'Python',
+      'PowerShell'
+    ],
+
+    overview:
+      'MultiCloud Forge is a multi-cloud infrastructure engineering project designed to demonstrate Infrastructure as Code, cloud networking, serverless computing, CI/CD, federated identity, observability, automated testing and multi-cloud resilience. Independent AWS and Azure environments are provisioned through Terraform while GitHub Actions provides automated validation and deployment using passwordless OIDC authentication.',
+
+    objectives: [
+      'Provision AWS and Azure infrastructure from a single Terraform project',
+      'Implement reusable Infrastructure as Code modules for both cloud providers',
+      'Deploy serverless Python workloads using AWS Lambda and Azure Functions',
+      'Build a GitHub Actions CI/CD pipeline for validation and deployment',
+      'Replace permanent CI/CD cloud credentials with OIDC federation',
+      'Implement monitoring and alerting across AWS and Azure',
+      'Validate infrastructure and application health automatically',
+      'Simulate application-level multi-cloud failover behavior',
+      'Maintain a low-cost lab architecture targeting less than US$10 per month'
+    ],
+
+    images: [
+      {
+        title: 'Multi-Cloud Architecture',
+        src: '/images/projects/multicloud-forge/architecture.png',
+        alt: 'MultiCloud Forge AWS and Azure architecture diagram',
+        caption:
+          'Overall architecture showing Terraform-managed AWS and Azure infrastructure, GitHub Actions CI/CD, OIDC federation, serverless workloads and observability services.'
+      },
+
+      {
+        title: 'Network Architecture',
+        src: '/images/projects/multicloud-forge/network.png',
+        alt: 'MultiCloud Forge AWS VPC and Azure VNet network architecture',
+        caption:
+          'Network architecture showing AWS VPC and Azure VNet segmentation, application subnets, private subnets and network security controls.'
+      },
+
+      {
+        title: '1. GitHub Actions CI/CD Run',
+        src: '/images/projects/multicloud-forge/output-01.png',
+        alt: 'GitHub Actions Terraform CI/CD workflow execution',
+        caption:
+          'Detailed GitHub Actions workflow run showing the Terraform CI/CD pipeline execution and job status.'
+      },
+
+      {
+        title: '2. Recent CI/CD Pipeline Runs',
+        src: '/images/projects/multicloud-forge/output-02.png',
+        alt: 'Recent MultiCloud Forge GitHub Actions workflow runs',
+        caption:
+          'Recent Terraform CI workflow executions on the main branch, demonstrating repeatable automated pipeline runs.'
+      },
+
+      {
+        title: '3. Terraform Infrastructure Validation',
+        src: '/images/projects/multicloud-forge/output-03.png',
+        alt: 'MultiCloud Forge Terraform infrastructure validation test',
+        caption:
+          'Python-based infrastructure validation confirming the expected Terraform-managed cloud resources.'
+      },
+
+      {
+        title: '4. Multi-Cloud Health Check',
+        src: '/images/projects/multicloud-forge/output-04.png',
+        alt: 'AWS and Azure multi-cloud health check results',
+        caption:
+          'Automated connectivity testing of the AWS Lambda and Azure Function health endpoints.'
+      },
+
+      {
+        title: '5. Failover Simulation',
+        src: '/images/projects/multicloud-forge/output-05.png',
+        alt: 'MultiCloud Forge application failover simulation',
+        caption:
+          'Application-level failover simulation using an intentionally unavailable AWS endpoint to verify fallback to the healthy Azure workload.'
+      },
+
+      {
+        title: '6. AWS CloudWatch Observability',
+        src: '/images/projects/multicloud-forge/output-06.png',
+        alt: 'AWS CloudWatch alarm status for MultiCloud Forge',
+        caption:
+          'AWS CloudWatch alarm inspection showing the configured Lambda error monitoring state, threshold and metric.'
+      },
+
+      {
+        title: '7. Azure 5xx Telemetry',
+        src: '/images/projects/multicloud-forge/output-07.png',
+        alt: 'Azure Log Analytics HTTP 5xx telemetry query',
+        caption:
+          'Azure Log Analytics query displaying HTTP 5xx telemetry collected from the Azure Function application.'
+      },
+
+      {
+        title: '8. Controlled Azure Function Failure',
+        src: '/images/projects/multicloud-forge/output-08.png',
+        alt: 'Controlled Azure Function HTTP failure request',
+        caption:
+          'Controlled request to the Azure Function failure endpoint used to generate observable HTTP error telemetry.'
+      },
+
+      {
+        title: '9. Azure Monitor Alert',
+        src: '/images/projects/multicloud-forge/output-09.png',
+        alt: 'Azure Monitor alert in Fired state',
+        caption:
+          'Azure Monitor verification showing the Function application error alert entering the Fired state after controlled failure generation.'
+      }
+    ],
+
+    highlights: [
+      'Terraform-managed infrastructure across AWS and Microsoft Azure',
+      'Reusable Terraform modules for networking, compute and monitoring',
+      'AWS Lambda and Azure Functions serverless workloads',
+      'GitHub Actions CI/CD pipeline with automated Terraform deployment',
+      'Passwordless AWS and Azure authentication through GitHub OIDC federation',
+      'AWS CloudWatch monitoring and metric alarms',
+      'Azure Application Insights and Log Analytics telemetry',
+      'Azure Monitor scheduled query alerting for server-side failures',
+      'Automated Terraform infrastructure validation using Python',
+      'Automated AWS and Azure health endpoint validation',
+      'Application-level AWS-to-Azure failover simulation',
+      'Controlled failure endpoints for observability testing',
+      'Cost-conscious architecture targeting less than US$10 per month'
+    ],
+
+    architecture: [
+      'GitHub Actions CI/CD',
+      'GitHub OIDC Federation',
+      'Terraform Infrastructure as Code',
+      'AWS VPC',
+      'AWS Lambda',
+      'AWS CloudWatch',
+      'Azure Virtual Network',
+      'Azure Functions',
+      'Azure Application Insights',
+      'Azure Log Analytics',
+      'Azure Monitor',
+      'Python Validation Layer'
+    ],
+
+    cloudArchitecture: [
+      {
+        provider: 'AWS',
+        region: 'ap-southeast-1',
+        components: [
+          'VPC',
+          'Public Subnet',
+          'Private Subnet',
+          'Internet Gateway',
+          'NAT Gateway',
+          'Route Tables',
+          'Security Groups',
+          'Network ACLs',
+          'AWS Lambda',
+          'CloudWatch',
+          'IAM'
+        ]
+      },
+
+      {
+        provider: 'Microsoft Azure',
+        region: 'Southeast Asia',
+        components: [
+          'Resource Group',
+          'Virtual Network',
+          'Application Subnet',
+          'Private Subnet',
+          'Network Security Groups',
+          'Azure Functions',
+          'Application Insights',
+          'Log Analytics',
+          'Azure Monitor',
+          'Microsoft Entra Workload Identity Federation'
+        ]
+      }
+    ],
+
+    cicd: [
+      'Terraform formatting and validation',
+      'Application validation',
+      'AWS authentication through GitHub OIDC',
+      'Azure authentication through GitHub OIDC',
+      'Terraform plan',
+      'Terraform apply on the main branch',
+      'Infrastructure validation',
+      'Application health validation',
+      'Failover validation'
+    ],
+
+    securityControls: [
+      {
+        name: 'GitHub OIDC Federation',
+        description:
+          'Allows GitHub Actions to authenticate to AWS and Azure without storing permanent cloud access keys or client secrets in the CI/CD pipeline.'
+      },
+
+      {
+        name: 'AWS IAM Deployment Role',
+        description:
+          'GitHub Actions assumes a dedicated AWS IAM role using AssumeRoleWithWebIdentity.'
+      },
+
+      {
+        name: 'Microsoft Entra Workload Identity',
+        description:
+          'GitHub Actions authenticates to Azure through federated workload identity credentials.'
+      },
+
+      {
+        name: 'Network Segmentation',
+        description:
+          'AWS and Azure workloads use separate application and private network segments with Security Groups and Network Security Groups controlling access.'
+      },
+
+      {
+        name: 'Infrastructure as Code',
+        description:
+          'Cloud infrastructure is defined through Terraform, providing reproducible and reviewable infrastructure configuration.'
+      }
+    ],
+
+    observability: [
+      {
+        provider: 'AWS',
+        services: [
+          'CloudWatch',
+          'Lambda Metrics',
+          'CloudWatch Metric Alarm'
+        ],
+        description:
+          'AWS Lambda telemetry is monitored through CloudWatch with metric alarms used to detect application errors.'
+      },
+
+      {
+        provider: 'Azure',
+        services: [
+          'Application Insights',
+          'Log Analytics',
+          'Azure Monitor',
+          'Scheduled Query Alert'
+        ],
+        description:
+          'Azure Function telemetry is collected through Application Insights and Log Analytics, with Azure Monitor alerts detecting HTTP 5xx failures.'
+      }
+    ],
+
+    validation: [
+      {
+        name: 'Infrastructure Validation',
+        script: 'tests/infrastructure/test_terraform.py',
+        purpose:
+          'Validates that the expected Terraform-managed AWS and Azure infrastructure exists.'
+      },
+
+      {
+        name: 'Health Validation',
+        script: 'tests/connectivity/test_health.py',
+        purpose:
+          'Tests AWS Lambda and Azure Function health endpoints and verifies that both cloud workloads respond successfully.'
+      },
+
+      {
+        name: 'Failover Validation',
+        script: 'tests/failover/test_failover.py',
+        purpose:
+          'Simulates AWS workload unavailability and verifies that the application-level resilience logic identifies the healthy Azure workload.'
+      }
+    ],
+
+    testing: [
+      'Terraform infrastructure validation completed successfully',
+      'AWS Lambda health endpoint responds successfully',
+      'Azure Function health endpoint responds successfully',
+      'Multi-cloud health validation confirms both workloads are operational',
+      'Simulated AWS failure correctly selects the healthy Azure workload',
+      'AWS CloudWatch alarm configuration is successfully retrieved',
+      'Azure Application Insights records controlled HTTP 5xx telemetry',
+      'Azure Monitor alert successfully enters the Fired state after controlled failure generation',
+      'GitHub Actions successfully performs CI/CD validation and deployment'
+    ],
+
+    verification: [
+      {
+        command:
+          'gh run list --workflow terraform.yml --limit 3',
+        purpose:
+          'Verify recent Terraform CI/CD workflow executions.'
+      },
+
+      {
+        command:
+          'python tests\\infrastructure\\test_terraform.py',
+        purpose:
+          'Run automated Terraform infrastructure validation.'
+      },
+
+      {
+        command:
+          'python tests\\connectivity\\test_health.py $awsHealth $azureHealth',
+        purpose:
+          'Validate application health across AWS and Azure.'
+      },
+
+      {
+        command:
+          'python tests\\failover\\test_failover.py $fakeAwsHealth $azureHealth',
+        purpose:
+          'Simulate AWS failure and validate Azure failover behavior.'
+      },
+
+      {
+        command:
+          'aws cloudwatch describe-alarms --alarm-names "mcf-dev-health-errors"',
+        purpose:
+          'Inspect the AWS CloudWatch application error alarm.'
+      },
+
+      {
+        command:
+          'az monitor log-analytics query',
+        purpose:
+          'Query Azure Log Analytics for HTTP 5xx application telemetry.'
+      },
+
+      {
+        command:
+          'az rest --method get .../providers/Microsoft.AlertsManagement/alerts',
+        purpose:
+          'Verify that the Azure Monitor application error alert reaches the Fired state.'
+      }
+    ],
+
+    repositoryStructure: [
+      '.github/workflows - GitHub Actions CI/CD',
+      'application/aws-lambda - AWS Lambda application',
+      'application/azure-function - Azure Function application',
+      'diagrams - Architecture and network diagrams',
+      'docs - Engineering documentation',
+      'terraform/environments - Environment configuration',
+      'terraform/modules - Reusable Terraform modules',
+      'tests/infrastructure - Terraform infrastructure tests',
+      'tests/connectivity - Multi-cloud health tests',
+      'tests/failover - Failover simulation tests'
+    ],
+
+    outcome:
+      'MultiCloud Forge demonstrates an end-to-end multi-cloud engineering workflow spanning infrastructure provisioning, cloud networking, serverless computing, CI/CD, federated identity, observability and automated resilience testing. The completed environment provisions independent AWS and Azure workloads, authenticates CI/CD pipelines without permanent cloud credentials, validates infrastructure and application health automatically, and demonstrates application-level failover behavior while maintaining a cost-conscious serverless architecture.',
+
+    code: `Infrastructure: Terraform 1.16.2
+  Cloud Providers: AWS + Microsoft Azure
+  AWS Region: ap-southeast-1
+  Azure Region: Southeast Asia
+
+  Compute:
+  - AWS Lambda
+  - Azure Functions
+
+  Networking:
+  - AWS VPC
+  - Azure VNet
+  - Public / Application Subnets
+  - Private Subnets
+  - Security Groups / NSGs
+
+  CI/CD:
+  - GitHub Actions
+  - Terraform Plan / Apply
+  - Automated Validation
+
+  Authentication:
+  - GitHub OIDC
+  - AWS IAM AssumeRoleWithWebIdentity
+  - Microsoft Entra Workload Identity Federation
+
+  Observability:
+  - AWS CloudWatch
+  - Azure Application Insights
+  - Azure Log Analytics
+  - Azure Monitor
+
+  Testing:
+  - Terraform Infrastructure Validation
+  - Multi-Cloud Health Validation
+  - Failover Simulation
+
+  Cost Target:
+  < US$10/month`
   }
 ]
