@@ -1,6 +1,17 @@
+import { useState } from 'react'
 import { Award, BriefcaseBusiness, GraduationCap, Users } from 'lucide-react'
 
 export default function KYouth() {
+  const programmeDays = [
+    { day: 'Day 1', date: 'Monday, 2 November 2026', title: 'Programme Introduction' },
+    { day: 'Day 2', date: 'Tuesday, 3 November 2026', title: 'Learning & Development' },
+    { day: 'Day 3', date: 'Wednesday, 4 November 2026', title: 'Skills in Practice' },
+    { day: 'Day 4', date: 'Thursday, 5 November 2026', title: 'Teamwork & Industry Exposure' },
+    { day: 'Day 5', date: 'Friday, 6 November 2026', title: 'Reflection & Career Next Steps' }
+  ]
+
+  const [activeDay, setActiveDay] = useState(0)
+
   const highlights = [
     {
       icon: GraduationCap,
@@ -49,6 +60,41 @@ export default function KYouth() {
             <p>{text}</p>
           </article>
         ))}
+      </section>
+
+      <section className="k-youth-schedule" aria-labelledby="schedule-heading">
+        <div className="k-youth-section-head">
+          <div>
+            <div className="eyebrow">5-DAY PROGRAMME</div>
+            <h2 id="schedule-heading">Programme schedule</h2>
+          </div>
+          <p>2–6 November 2026</p>
+        </div>
+
+        <div className="k-youth-days" role="tablist" aria-label="Programme days">
+          {programmeDays.map((programmeDay, index) => (
+            <button
+              key={programmeDay.day}
+              type="button"
+              role="tab"
+              aria-selected={activeDay === index}
+              className={activeDay === index ? 'active' : ''}
+              onClick={() => setActiveDay(index)}
+            >
+              <span>{programmeDay.day}</span>
+              <strong>{programmeDay.date.split(', ')[1]}</strong>
+            </button>
+          ))}
+        </div>
+
+        <div className="k-youth-day-panel" role="tabpanel">
+          <div>
+            <span>{programmeDays[activeDay].day}</span>
+            <p>{programmeDays[activeDay].date}</p>
+            <h3>{programmeDays[activeDay].title}</h3>
+          </div>
+          <p className="k-youth-day-status">Programme details to be added</p>
+        </div>
       </section>
 
       <section className="k-youth-note">

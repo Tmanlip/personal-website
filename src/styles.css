@@ -1345,6 +1345,112 @@
   line-height: 1.65;
 }
 
+.k-youth-schedule {
+  margin-bottom: 70px;
+}
+
+.k-youth-section-head {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 24px;
+}
+
+.k-youth-section-head h2 {
+  margin: 0;
+  color: white;
+  font-size: 34px;
+  letter-spacing: -0.03em;
+}
+
+.k-youth-section-head > p {
+  margin: 0 0 4px;
+  color: #ADFF2F;
+  font-weight: 700;
+}
+
+.k-youth-days {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.k-youth-days button {
+  min-height: 82px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 12px;
+  color: #99a9b6;
+  background: rgba(255, 255, 255, 0.025);
+  text-align: left;
+  cursor: pointer;
+}
+
+.k-youth-days button span,
+.k-youth-days button strong {
+  display: block;
+}
+
+.k-youth-days button span {
+  margin-bottom: 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.k-youth-days button strong {
+  color: white;
+  font-size: 14px;
+}
+
+.k-youth-days button.active {
+  border-color: rgba(173, 255, 47, 0.75);
+  color: #ADFF2F;
+  background: rgba(173, 255, 47, 0.09);
+}
+
+.k-youth-day-panel {
+  min-height: 180px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 30px;
+  padding: 30px 34px;
+  border: 1px solid rgba(173, 255, 47, 0.2);
+  border-radius: 18px;
+  background: linear-gradient(135deg, rgba(173, 255, 47, 0.07), rgba(255, 255, 255, 0.018));
+}
+
+.k-youth-day-panel span {
+  color: #ADFF2F;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.k-youth-day-panel p {
+  margin: 8px 0;
+  color: #9eacb9;
+}
+
+.k-youth-day-panel h3 {
+  margin: 0;
+  color: white;
+  font-size: 30px;
+}
+
+.k-youth-day-panel .k-youth-day-status {
+  margin: 0;
+  padding: 8px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
 .k-youth-note {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -1353,6 +1459,33 @@
   padding: 38px 40px;
   border-top: 1px solid rgba(173, 255, 47, 0.28);
   border-bottom: 1px solid rgba(173, 255, 47, 0.28);
+}
+
+@media (max-width: 900px) {
+  .k-youth-days {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .k-youth-section-head,
+  .k-youth-day-panel {
+    align-items: start;
+    grid-template-columns: 1fr;
+  }
+
+  .k-youth-section-head {
+    flex-direction: column;
+  }
+
+  .k-youth-days {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .k-youth-day-panel {
+    gap: 20px;
+    padding: 24px;
+  }
 }
 
 .k-youth-note h2 {
