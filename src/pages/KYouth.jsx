@@ -36,8 +36,8 @@ export default function KYouth() {
           </p>
         </div>
 
-        <div className="k-youth-mark" aria-hidden="true">
-          K<span>Y</span>
+        <div className="k-youth-mark">
+          <img src="/images/kyouth.png" alt="K-Youth, an initiative by Khazanah Nasional" />
         </div>
       </section>
 
