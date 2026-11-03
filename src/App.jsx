@@ -8,6 +8,7 @@ import Writeups from './pages/WriteUp'
 import WriteupDetail from './pages/WriteUpDetail'
 import About from './pages/About'
 import WriteupCollection from './pages/WriteupCollection'
+import KYouth from './pages/KYouth'
 
 export default function App() {
   return (
@@ -35,6 +36,7 @@ export default function App() {
           element={<WriteupDetail />}
         />
 
+        <Route path="/k-youth" element={<KYouth />} />
         <Route path="/about" element={<About />} />
       </Routes>
 

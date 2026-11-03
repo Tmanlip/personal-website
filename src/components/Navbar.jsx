@@ -28,6 +28,10 @@ export default function Navbar() {
             CTF Write-ups
           </NavLink>
 
+          <NavLink to="/k-youth">
+            K-Youth
+          </NavLink>
+
           <NavLink to="/about">
             About
           </NavLink>
